@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/csgo"
+            android:title="Cs go"
+            android:onClick="Cs"/>
+        <item
+            android:id="@+id/pubg"
+            android:title="PUBG"
+            android:onClick="Pubg"/>
+        <item
+            android:id="@+id/dota"
+            android:title="Dota 2"
+            android:onClick="Dota"/>
+        <item
+            android:title="Избранное"
+
+            android:onClick="Fav"
+            />
+        <item
+            android:title="О программе"
+            android:onClick="Prog"/>
+        <item
+            android:title="Выход"
+            android:onClick="exit"/>
+    </group>
+
+</menu>
