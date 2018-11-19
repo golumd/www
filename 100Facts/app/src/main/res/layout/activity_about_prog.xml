@@ -10,7 +10,7 @@
         android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Тут будет о программе"
+        android:text="Привет! Данное приложение было создано для того, чтобы тебе было легче узнать особенности твоей любимой игры, интересные факты о ней и т.д. Добавляй понравившиейся факты в Избранное, а при необходимости их всегда можно удалить. С вопросами и предложениями обращайтесь на почту golumd2@mail.ru"
         android:textSize="18sp"
          />
 </android.support.constraint.ConstraintLayout>

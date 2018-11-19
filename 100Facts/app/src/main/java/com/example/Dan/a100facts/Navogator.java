@@ -1,6 +1,8 @@
 package com.example.Dan.a100facts;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -192,6 +194,53 @@ public class Navogator extends AppCompatActivity
             catch(IOException ex){
                 boolean kostil=true;
             }
+        }
+    }
+    private final static String FILE_NAMEMAIN = "contentmain.txt";
+    public void saveTextMAIN(String obmen){
+        FileOutputStream fos = null;
+        try {
+
+            String text=obmen;
+            fos = openFileOutput(FILE_NAMEMAIN, MODE_PRIVATE);
+            fos.write(text.getBytes());
+        }
+        catch(IOException ex) {
+            boolean kostil=true;
+        }
+        finally{
+            try{
+                if(fos!=null)
+                    fos.close();
+            }
+            catch(IOException ex){
+                boolean kostil=true;
+            }
+        }
+    }
+
+
+    private void checkFirstStart() {
+
+        SharedPreferences sp = getSharedPreferences("hasVisited",
+                Context.MODE_PRIVATE);
+        // проверяем, первый ли раз открывается программа (Если вход первый то вернет false)
+        boolean hasVisited = sp.getBoolean("hasVisited", false);
+
+        if (!hasVisited) {
+            // Сработает если Вход первый
+            saveTextMAIN("");
+            //Ставим метку что вход уже был
+            SharedPreferences.Editor e = sp.edit();
+            e.putBoolean("hasVisited", true);
+            e.commit(); //После этого hasVisited будет уже true и будет означать, что вход уже был
+
+            //Ниже запускаем активность которая нужна при первом входе
+
+        } else {
+
+            //Сработает если вход в приложение уже был
+            //Ниже запускаем активность которая нужна при последующих входах
         }
     }
 

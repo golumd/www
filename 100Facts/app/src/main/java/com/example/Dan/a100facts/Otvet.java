@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -221,8 +222,8 @@ public class Otvet extends AppCompatActivity {
 
 
     public void AddFavorite(View view) {
-        String str=openText();
-        //str+=" ";
+        /*String str=openText();
+        str+=" ";
         str+=current;
         if(position<=9){
             str+="0";
@@ -230,6 +231,11 @@ public class Otvet extends AppCompatActivity {
         str+=position;
         saveText(str);
 
+        Toast toast = Toast.makeText(getApplicationContext(),
+                str, Toast.LENGTH_SHORT);
+        toast.show();
+        */
+        form();
 
     }
 
@@ -266,7 +272,7 @@ public class Otvet extends AppCompatActivity {
         FileOutputStream fos = null;
         try {
             String text = obmen;
-            fos = openFileOutput(FILE_NAME2, MODE_PRIVATE);
+            fos = openFileOutput(FILE_NAME, MODE_PRIVATE);
             fos.write(text.getBytes());
         } catch (IOException ex) {
             boolean kostil = true;
@@ -279,4 +285,128 @@ public class Otvet extends AppCompatActivity {
             }
         }
     }
+
+    private final static String FILE_NAMEMAIN = "contentmain.txt";
+    public void saveTextMAIN(String obmen) {
+        FileOutputStream fos = null;
+        try {
+            String text = obmen;
+            fos = openFileOutput(FILE_NAMEMAIN, MODE_PRIVATE);
+            fos.write(text.getBytes());
+        } catch (IOException ex) {
+            boolean kostil = true;
+        } finally {
+            try {
+                if (fos != null)
+                    fos.close();
+            } catch (IOException ex) {
+                boolean kostil = true;
+            }
+        }
+    }
+    public String openTextMAIN() {
+
+        FileInputStream fin = null;
+        try {
+            fin = openFileInput(FILE_NAMEMAIN);
+            byte[] bytes = new byte[fin.available()];
+            fin.read(bytes);
+            String text = new String(bytes);
+            return text;
+        } catch (IOException ex) {
+
+            String kostil = "";
+            return kostil;
+        } finally {
+
+            try {
+                if (fin != null)
+                    fin.close();
+            } catch (IOException ex) {
+                String kostil = "";
+                return kostil;
+            }
+        }
+    }
+
+    public void form(){
+        String str=openTextMAIN();
+        str+="(";
+        if(current==1){
+            str+=Cs2[position];
+        }
+        if(current==2){
+            str+=Pubg2[position];
+        }
+        if(current==3){
+            str+=Dota2[position];
+        }
+        str+=")";
+        saveTextMAIN(str);
+    }
+
+
+    public String[] Dota2 = {
+            "Тандем мечты",
+            "Скучающий Земеля",
+            "Лансер-рыболов",
+            "Рогa Magnus'a",
+            "Кровавая подкормка",
+            "История Venomancer'а",
+            "Питомец ",
+            "Немного о weaver",
+            "Потерянная память",
+            "Жрец Clasz",
+            "Вышибала",
+            "Искушенный убийца",
+            "Любимец Chaos Night'a",
+            "Служивый",
+            "Одной расы",
+            "Герой ритуалов",
+            "Коллеги",
+            "7-летний убийца",
+
+    };
+    public String[] Cs2 = {
+            "Хэд-шот",
+            "Скорострелы",
+            "Недалеко, но мощно",
+            "Арбалет",
+            "Огнетушитель",
+            "Лакшери скин",
+            "Супер-боты",
+            "Такого не существует",
+            "Плевать на броню",
+            "Закроем на это глаза",
+            "one-shot в ноги",
+            "Хватит скакать",
+            "Пиратский язык",
+            "Снеговик",
+            "Бомба-недотрога",
+            "wait",
+            "wait",
+            "wait",
+
+    };
+    public String[] Pubg2 = {
+            "Доча, это в твою честь",
+            "Сковородка??",
+            "Брутальность - наше всё",
+            "PРекордсмен",
+            "Моддинг под игру ARMA",
+            "Реклама не нужна",
+            "Сгорели",
+            "wait",
+            "wait",
+            "wait",
+            "wait",
+            "wait",
+            "wait",
+            "wait",
+            "wait",
+            "wait",
+            "wait",
+            "wait",
+
+    };
 }
